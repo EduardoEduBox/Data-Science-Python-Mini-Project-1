@@ -1,9 +1,9 @@
 tasks = {}
 
 # adding a task using key, value pairs to make it easy to manage
-def add_task():
+def add_task(my_tasks):
     task_key = input("What is the name of your task? ")
-    if task_key in tasks:
+    if task_key in my_tasks:
         print("You already have a task with that name!")
         return
 
@@ -11,15 +11,15 @@ def add_task():
 
     print(f"Task '{task_key}' successfully added!")
 
-    tasks.update({task_key: task_description})
+    my_tasks.update({task_key: task_description})
 
 # checking if the item exists, if True, proceed to delete that item from the dict
-def remove_task():
-    if not tasks.keys():
+def remove_task(my_tasks):
+    if not my_tasks.keys():
         print("You don't have any tasks yet...")
         return
 
-    keys = tasks.keys()
+    keys = my_tasks.keys()
     formatted_keys = ', '.join(keys)
     task_remover_key = input(f"""Alright, which task would you like to remove?:
                 (press "c" to cancel) 
@@ -30,24 +30,24 @@ def remove_task():
     if task_remover_key == "c":
         return
 
-    if task_remover_key in tasks:
+    if task_remover_key in my_tasks:
         print(f"Task '{task_remover_key}' successfully deleted!")
-        del tasks[task_remover_key]
+        del my_tasks[task_remover_key]
     else:
         print("Please select a valid task. (check for typos or cases)")
-        remove_task()
+        remove_task(my_tasks)
 
 # simple getter function, retrieving all the values in a user-friendly format
-def view_tasks():
-    if not tasks.keys():
+def view_tasks(my_tasks):
+    if not my_tasks.keys():
         print("You don't have any tasks yet...")
         return
 
-    for key, item in tasks.items():
+    for key, item in my_tasks.items():
         print(f"Task: '{key}' Description: '{item}'")
 
 # Add task when running the app for the first time
-add_task()
+add_task(tasks)
 
 # loop that will run this until the person exits the application
 while True:
@@ -59,13 +59,13 @@ while True:
     """))
     
     if action == 1:
-        add_task()
+        add_task(tasks)
         continue
     elif action == 2:
-        remove_task()
+        remove_task(tasks)
         continue
     elif action == 3:
-        view_tasks()
+        view_tasks(tasks)
         continue
     elif action == 4:
         print("You exited")
