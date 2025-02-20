@@ -1,0 +1,44 @@
+# Function to remove a task from the to-do list
+def remove_task(todo_list):
+    if not todo_list:
+        print("No tasks to remove.")
+        return
+    
+    view_tasks(todo_list)  # Displays current tasks before removal
+    try:
+        index = int(input("Enter the task number to remove: ")) - 1  # User selects task number
+        if 0 <= index < len(todo_list):
+            removed_task = todo_list.pop(index)  # Removes task from list
+            print(f"'{removed_task['task']}' has been removed from the list.")
+        else:
+            print("Invalid task number.")
+    except ValueError:
+        print("Please enter a valid number.")
+
+# Main function to run the application loop
+def run_application():
+    todo_list = []  # Initialize empty to-do list
+    while True:
+        print_menu()
+        choice = input("Enter your choice: ")  # User selects menu option
+        try:
+            choice = int(choice)
+            if choice == 1:
+                add_task(todo_list)  # Calls function to add task
+            elif choice == 2:
+                remove_task(todo_list)  # Calls function to remove task
+            elif choice == 3:
+                view_tasks(todo_list)  # Calls function to view tasks
+            elif choice == 4:
+                suggest_tasks(todo_list)  # Calls function to suggest urgent tasks
+            elif choice == 5:
+                print("Exiting the application. Goodbye!")
+                break  # Exits the loop and ends program
+            else:
+                print("Invalid choice. Please enter a number between 1 and 5.")
+        except ValueError:
+            print("Invalid input. Please enter a number between 1 and 5.")
+
+# Runs the application if this file is executed directly
+if __name__ == "__main__":
+    run_application()
