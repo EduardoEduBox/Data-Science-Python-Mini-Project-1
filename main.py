@@ -1,34 +1,32 @@
-# Function to remove a task from the to-do list
-def remove_task(todo_list):
-    if not todo_list:
-        print("No tasks to remove.")
-        return
-    
-    view_tasks(todo_list)  # Displays current tasks before removal
-    try:
-        index = int(input("Enter the task number to remove: ")) - 1  # User selects task number
-        if 0 <= index < len(todo_list):
-            removed_task = todo_list.pop(index)  # Removes task from list
-            print(f"'{removed_task['task']}' has been removed from the list.")
-        else:
-            print("Invalid task number.")
-    except ValueError:
-        print("Please enter a valid number.")
+from functions.suggest_task import suggest_tasks
+from functions.add_task import add_task
+from functions.remove_task import remove_task
+from functions.view_task import view_tasks
+
+def print_menu():
+    print("\nAdvanced To-Do List Application")
+    print("   1. Add Task")  # Adds a task with priority and deadline
+    print("   2. Remove Task")  # Removes a specific task from the list
+    print("   3. View Tasks")  # Displays all tasks sorted by priority and deadline
+    print("   4. Suggest Tasks")  # Suggests tasks based on urgency
+    print("   5. Exit")  # Exits the application
+    return int(input("Enter answer: "))
 
 # Main function to run the application loop
 def run_application():
     todo_list = []  # Initialize empty to-do list
     while True:
-        print_menu()
-        choice = input("Enter your choice: ")  # User selects menu option
+        choice = print_menu()
         try:
-            choice = int(choice)
             if choice == 1:
                 add_task(todo_list)  # Calls function to add task
+                continue
             elif choice == 2:
                 remove_task(todo_list)  # Calls function to remove task
+                continue
             elif choice == 3:
                 view_tasks(todo_list)  # Calls function to view tasks
+                continue
             elif choice == 4:
                 suggest_tasks(todo_list)  # Calls function to suggest urgent tasks
             elif choice == 5:
@@ -39,6 +37,4 @@ def run_application():
         except ValueError:
             print("Invalid input. Please enter a number between 1 and 5.")
 
-# Runs the application if this file is executed directly
-if __name__ == "__main__":
-    run_application()
+run_application()

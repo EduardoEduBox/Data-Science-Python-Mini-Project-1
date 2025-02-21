@@ -73,6 +73,10 @@ def suggest_tasks(todo_list):
     :param todo_list: current list of dictionaries, [{"task": "", "priority": "high, medium or low", "deadline": "date"}]
     """
 
+    if not todo_list:
+        print("You don't have any tasks for suggestion")
+        return
+
     if len(todo_list) == 1:
         print(f"Good {get_current_day_period(get_current_time())}! You just have one task to work on: ")
         print(f"    {todo_list[0]["task"]} - {todo_list[0]["priority"]} - {todo_list[0]["deadline"]}")
@@ -85,11 +89,3 @@ def suggest_tasks(todo_list):
         print(f"    {item['task']} - {item["priority"]} - {item["deadline"]}")
 
 
-# suggest_tasks([
-#     {'task': "milk", 'priority': 'medium', 'deadline': '2020-01-01'},
-#     {'task': "egg", 'priority': 'high', 'deadline': '2020-01-17'},
-#     {'task': "juice", 'priority': 'low', 'deadline': '2020-04-01'},
-#     {'task': "rice", 'priority': 'medium', 'deadline': '2020-07-18'},
-#     {'task': "meat", 'priority': 'high', 'deadline': '2020-03-05'},
-#     {'task': "nugget", 'priority': 'low', 'deadline': '2020-05-02'},
-# ])
