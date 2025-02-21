@@ -4,6 +4,12 @@ from functions.remove_task import remove_task
 from functions.view_task import view_tasks
 
 def print_menu():
+    """
+    Function that prints the menu (UI) that the user will see when running the application
+
+    :return: the number of the user input
+    """
+
     print("\nAdvanced To-Do List Application")
     print("   1. Add Task")  # Adds a task with priority and deadline
     print("   2. Remove Task")  # Removes a specific task from the list
@@ -14,6 +20,10 @@ def print_menu():
 
 # Main function to run the application loop
 def run_application():
+    """
+    Main function to run the entire todo list application
+    """
+
     todo_list = []  # Initialize empty to-do list
     while True:
         choice = print_menu()

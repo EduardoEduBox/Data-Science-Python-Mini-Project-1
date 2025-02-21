@@ -17,6 +17,11 @@ def view_tasks(todo_list):
 
 # Function to remove a task from the to-do list
 def remove_task(todo_list):
+    """
+    Function to remove an item of the todo list IF that item exists
+    :param todo_list: current list of dictionaries, [{"task": "", "priority": "high, medium or low", "deadline": "date"}]
+    """
+
     if not todo_list:
         print("No tasks to remove.")
         return
